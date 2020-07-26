@@ -1,5 +1,6 @@
 package org.webdriver.webui.action;
 
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.webdriver.webui.pageObject.LoginPage;
@@ -12,7 +13,7 @@ import org.webdriver.webui.utils.ElementAction;
 @Test(dataProvider = "BaseAction")
 public class loginAction extends BaseAction {
    @Parameters({"user","password"})
-    public loginAction(String user,String password) {
+    public loginAction(@Optional("100") String user, String password) {
         LoginPage loginPage = new LoginPage();
         ElementAction action = new ElementAction();
         loginPage.open();

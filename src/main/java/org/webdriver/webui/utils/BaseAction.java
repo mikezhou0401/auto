@@ -4,18 +4,24 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.html5.LocalStorage;
+import org.openqa.selenium.html5.WebStorage;
 import sun.rmi.runtime.Log;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class BaseAction extends TestBaseCase {
     public static WebDriver driver;
-
     public BaseAction() {
-        System.setProperty("webdriver.chrome.driver", "E:\\chromedriver_win32\\chromedriver.exe");
-        driver = new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", "E:\\Drivers\\chromedriver.exe");
+        if (null == driver) {
+            driver = new ChromeDriver();
+        }
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public String getCurrentUrl() {
@@ -25,6 +31,7 @@ public class BaseAction extends TestBaseCase {
     public void open(String url) {
         driver.get(url);
     }
+
     public void open(URL url) {
         driver.navigate().to(url);
     }
@@ -69,20 +76,23 @@ public class BaseAction extends TestBaseCase {
      * 页面操作
      */
 
-    void back() {
+    public void back() {
         driver.navigate().back();
     }
 
-    void forward() {
+    public void forward() {
         driver.navigate().forward();
     }
 
+    public void refresh() {
+        driver.navigate().refresh();
+    }
 
-    void close() {
+    public void close() {
         driver.close();
     }
 
-    void quit() {
+    public void quit() {
         driver.quit();
     }
 
@@ -119,7 +129,32 @@ public class BaseAction extends TestBaseCase {
 
     public void fullscreen() {
         driver.manage().window().fullscreen();
-
     }
+
+    /**
+     * 休眠
+     */
+    public void sleep(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * cookie&session
+     */
+    public void setCookie(String key, String value) {
+        Cookie c = new Cookie(key, value);
+        driver.manage().addCookie(c);
+    }
+
+    public void setLocalStorage(String key, String value) {
+        ChromeDriver c = (ChromeDriver) driver;
+        LocalStorage ls = c.getLocalStorage();
+        ls.setItem(key, value);
+    }
+
 
 }
