@@ -7,8 +7,10 @@ import org.testng.Assert;
 import org.webdriver.webui.utils.BaseAction;
 import org.webdriver.webui.utils.ElementAction;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class APPEditPage extends BaseAction {
     /**
@@ -71,6 +73,14 @@ public class APPEditPage extends BaseAction {
     }
 
     /**
+     * 用于点击单选后，选择已勾选项
+     */
+    public WebElement checked() {
+        return findElement("className", "biz-form-radio-checked");
+    }
+
+
+    /**
      * 多选元素定位//todo
      */
     public List<WebElement> multipleSelect() {
@@ -115,14 +125,30 @@ public class APPEditPage extends BaseAction {
         return findElements("className", "fake-input-container");
     }
 
+    /**
+     * 填写结果
+     */
+    public Map<WebElement, String> result() {
+        Map<WebElement, String> map =new HashMap<>();
+        for (WebElement element : findElements("cssSelector", "div.am-list-content>p")) {
+            if (null != element.getText()) {
+                map.put(element, element.getText());
+            }
+        }
 
+        for (WebElement element : findElements("tagName", "input")) {
+            if (null != element.getAttribute("value")) {
+                map.put(element, element.getAttribute("value"));
+            }
+        }
+        return map;
+    }
     /**
      * 提交
      */
     public WebElement submit() {
         return findElement("partialLinkText", "提 交");
     }
-
 
     /**
      * 箭头元素定位
@@ -138,7 +164,6 @@ public class APPEditPage extends BaseAction {
     public List<WebElement> text() {
         return findElements("className", "am-input-control");
     } */
-
 
 }
 

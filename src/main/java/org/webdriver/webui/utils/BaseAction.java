@@ -3,9 +3,11 @@ package org.webdriver.webui.utils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.html5.LocalStorage;
 import org.openqa.selenium.html5.WebStorage;
+import org.webdriver.webui.pageObject.BasePage;
 import sun.rmi.runtime.Log;
 
 import java.net.URL;
@@ -16,14 +18,18 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseAction extends TestBaseCase {
     public static WebDriver driver;
+
     public BaseAction() {
-        System.setProperty("webdriver.chrome.driver", "E:\\Drivers\\chromedriver.exe");
+
+        ChromeOptions options = new ChromeOptions();
+        System.setProperty("webdriver.chrome.driver", "E:\\chromedriver_win32\\chromedriver.exe");
+        options.addArguments("--start-maximized");
+        options.addArguments("--start-fullscreen");
         if (null == driver) {
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(options);
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
-
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
@@ -156,5 +162,18 @@ public class BaseAction extends TestBaseCase {
         ls.setItem(key, value);
     }
 
+    public void clickRound() {
+        BasePage basePage = new BasePage();
+        ElementAction action = new ElementAction();
+        action.click(basePage.roundOption());
+        action.click(basePage.sure());
+    }
+
+    /**
+     * 关闭页面下半部分弹窗
+     */
+    public void clickPoint() {
+
+    }
 
 }

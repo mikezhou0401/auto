@@ -57,4 +57,11 @@ public class BasePage extends BaseAction {
     public WebElement roundOption () {
         return findElement("className", "biz-square-check-btn-normal");
     }
+
+    /**
+     * 用于点击多选后，选择已勾选项
+     * */
+    public WebElement roundChecked() {
+        return findElement("className", "biz-square-check-btn-selected tree-icon-checked");
+    }
 }

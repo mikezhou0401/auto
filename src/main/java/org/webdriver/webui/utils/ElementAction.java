@@ -11,9 +11,9 @@ public class ElementAction extends BaseAction {
     public void click(WebElement element) {
         Actions actions = new Actions(driver);
         actions.moveToElement(element);
+        sleep(500);
         element.click();
     }
-
     public void submit(WebElement element) {
         element.submit();
     }
@@ -21,8 +21,10 @@ public class ElementAction extends BaseAction {
     public void sendKeys(WebElement element, String key) {
         Actions actions = new Actions(driver);
         actions.moveToElement(element);
+        sleep(500);
         element.clear();
         element.sendKeys(key);
+
     }
 
     public void clear(WebElement element) {
