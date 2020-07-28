@@ -1,8 +1,6 @@
 package org.webdriver.webui.action;
 
 import org.webdriver.webui.pageObject.DetailPage;
-import org.webdriver.webui.utils.BaseAction;
-import org.webdriver.webui.utils.ElementAction;
 
 public class InDetailAction extends BaseAction {
 

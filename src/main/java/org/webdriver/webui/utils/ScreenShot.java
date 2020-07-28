@@ -5,6 +5,7 @@ import com.google.common.io.Files;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+
 import java.io.File;
 
 
@@ -55,14 +56,14 @@ public class ScreenShot {
 
     public void takeScreenshot() {
         int number = 1;
-        File dir = new File("test-output\\snapshot");
+        File dir = new File(PropertiesUtil.getProperties().getProperty("screenShotPath"));
         if (!dir.exists()) {
             dir.mkdirs();
         }
-        String screenPath = dir.getAbsolutePath() + "\\" + screenName + number+".png";
+        String screenPath = dir.getAbsolutePath() + "\\" + screenName + number + ".png";
         if (new File(screenPath).exists()) {
             number++;
-            screenPath = dir.getAbsolutePath() + "\\" + screenName + number+".png";
+            screenPath = dir.getAbsolutePath() + "\\" + screenName + number + ".png";
         }
         this.takeScreenshot(screenPath);
     }

@@ -1,7 +1,8 @@
-package org.webdriver.webui.utils;
+package org.webdriver.webui.action;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.webdriver.webui.action.BaseAction;
 
 public class ElementAction extends BaseAction {
 

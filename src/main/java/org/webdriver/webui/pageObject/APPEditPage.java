@@ -1,11 +1,7 @@
 package org.webdriver.webui.pageObject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
-import org.webdriver.webui.utils.BaseAction;
-import org.webdriver.webui.utils.ElementAction;
+import org.webdriver.webui.action.BaseAction;
 
 import java.util.HashMap;
 import java.util.LinkedList;

@@ -4,12 +4,9 @@ import org.testng.annotations.Test;
 import org.webdriver.webui.pageObject.APPEditPage;
 import org.webdriver.webui.pageObject.BasePage;
 import org.webdriver.webui.pageObject.InstanceListPage;
-import org.webdriver.webui.utils.BaseAction;
-import org.webdriver.webui.utils.ElementAction;
+import org.webdriver.webui.action.BaseAction;
+import org.webdriver.webui.action.ElementAction;
 import org.webdriver.webui.utils.ScreenShot;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class DemoTest extends BaseAction {
     @Test()

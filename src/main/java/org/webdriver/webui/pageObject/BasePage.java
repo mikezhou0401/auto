@@ -1,7 +1,7 @@
 package org.webdriver.webui.pageObject;
 
 import org.openqa.selenium.WebElement;
-import org.webdriver.webui.utils.BaseAction;
+import org.webdriver.webui.action.BaseAction;
 
 import java.util.LinkedList;
 import java.util.List;

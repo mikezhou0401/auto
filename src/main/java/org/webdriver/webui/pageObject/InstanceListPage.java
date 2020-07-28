@@ -1,8 +1,8 @@
 package org.webdriver.webui.pageObject;
 
 import org.openqa.selenium.WebElement;
-import org.webdriver.webui.utils.BaseAction;
-import org.webdriver.webui.utils.ElementAction;
+import org.webdriver.webui.action.BaseAction;
+import org.webdriver.webui.action.ElementAction;
 
 public class InstanceListPage extends BaseAction {
 

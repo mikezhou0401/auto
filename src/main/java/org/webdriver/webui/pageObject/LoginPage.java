@@ -1,15 +1,13 @@
 package org.webdriver.webui.pageObject;
 
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-import org.webdriver.webui.utils.BaseAction;
+import org.webdriver.webui.action.BaseAction;
+import org.webdriver.webui.utils.PropertiesUtil;
 
 
 public class LoginPage extends BaseAction {
 
-    public static final String url = "admin.scm3.yunsom.cn";
+    public static final String url = PropertiesUtil.getProperties().getProperty("adminLoginURL");
 
     public void open() {
         driver.get(url);

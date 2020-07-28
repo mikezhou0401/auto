@@ -4,8 +4,6 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.webdriver.webui.pageObject.LoginPage;
-import org.webdriver.webui.utils.BaseAction;
-import org.webdriver.webui.utils.ElementAction;
 
 /**
  * 登陆模块

@@ -1,18 +1,15 @@
-package org.webdriver.webui.utils;
+package org.webdriver.webui.action;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.html5.LocalStorage;
-import org.openqa.selenium.html5.WebStorage;
 import org.webdriver.webui.pageObject.BasePage;
-import sun.rmi.runtime.Log;
+import org.webdriver.webui.utils.PropertiesUtil;
+import org.webdriver.webui.utils.TestBaseCase;
 
 import java.net.URL;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +19,7 @@ public class BaseAction extends TestBaseCase {
     public BaseAction() {
 
         ChromeOptions options = new ChromeOptions();
-        System.setProperty("webdriver.chrome.driver", "E:\\chromedriver_win32\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", PropertiesUtil.getProperties().getProperty("chromeDriverPath"));
         options.addArguments("--start-maximized");
         options.addArguments("--start-fullscreen");
         if (null == driver) {
