@@ -1,13 +1,19 @@
 package org.webdriver.webui.action;
 
+import com.alibaba.fastjson.JSON;
+import org.apache.http.HttpEntity;
+import org.apache.http.util.EntityUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.html5.LocalStorage;
+import org.testng.annotations.AfterSuite;
 import org.webdriver.webui.pageObject.BasePage;
+import org.webdriver.webui.utils.HttpClientUtil;
 import org.webdriver.webui.utils.PropertiesUtil;
 import org.webdriver.webui.utils.TestBaseCase;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Set;
@@ -17,9 +23,9 @@ public class BaseAction extends TestBaseCase {
     public static WebDriver driver;
 
     public BaseAction() {
-
         ChromeOptions options = new ChromeOptions();
-        System.setProperty("webdriver.chrome.driver", PropertiesUtil.getProperties().getProperty("chromeDriverPath"));
+        System.setProperty("webdriver.chrome.driver",
+                new PropertiesUtil().getProperties().getProperty("chromeDriverPath"));
         options.addArguments("--start-maximized");
         options.addArguments("--start-fullscreen");
         if (null == driver) {
@@ -27,6 +33,7 @@ public class BaseAction extends TestBaseCase {
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
+
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }
@@ -153,10 +160,33 @@ public class BaseAction extends TestBaseCase {
         driver.manage().addCookie(c);
     }
 
+    /**
+     * 给浏览器设置LocalStorage
+     */
+
     public void setLocalStorage(String key, String value) {
         ChromeDriver c = (ChromeDriver) driver;
         LocalStorage ls = c.getLocalStorage();
         ls.setItem(key, value);
+    }
+
+    /**
+     * 调接口获取LocalStorage
+     */
+    public String getLocalStorage() {
+        String response = null;
+        String body = "{\n" +
+                "    \"phone\": \"15902379217\",\n" +
+                "    \"password\": \"123456\",\n" +
+                "    \"ttl\":10\n" +
+                "}";
+        HttpEntity entity = new HttpClientUtil().post("http://192.168.1.233:9998/auth/login", body).getEntity();
+        try {
+            response = EntityUtils.toString(entity);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return JSON.parseObject(response).getJSONObject("data").getString("token");
     }
 
     public void clickRound() {
@@ -171,6 +201,15 @@ public class BaseAction extends TestBaseCase {
      */
     public void clickPoint() {
 
+    }
+
+
+    /**
+     * 执行完整个套件，关闭浏览器
+     */
+    @AfterSuite
+    public void closeDriver() {
+        driver.close();
     }
 
 }

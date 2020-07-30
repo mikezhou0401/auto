@@ -7,8 +7,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertiesUtil {
-    public static Properties getProperties() {
-        String path = new Properties().getClass().getClassLoader().getResource("./config.properties").getPath();
+    public Properties  getProperties() {
+        String path = this.getClass().getClassLoader().getResource("./config.properties").getPath();
         File file = new File(path);
         Properties p = new Properties();
         InputStream in = null;

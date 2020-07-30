@@ -56,7 +56,7 @@ public class ScreenShot {
 
     public void takeScreenshot() {
         int number = 1;
-        File dir = new File(PropertiesUtil.getProperties().getProperty("screenShotPath"));
+        File dir = new File(new  PropertiesUtil().getProperties().getProperty("screenShotPath"));
         if (!dir.exists()) {
             dir.mkdirs();
         }

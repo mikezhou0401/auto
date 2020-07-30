@@ -7,7 +7,7 @@ import org.webdriver.webui.utils.PropertiesUtil;
 
 public class LoginPage extends BaseAction {
 
-    public static final String url = PropertiesUtil.getProperties().getProperty("adminLoginURL");
+    public static final String url = new  PropertiesUtil().getProperties().getProperty("adminLoginURL");
 
     public void open() {
         driver.get(url);
