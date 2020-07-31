@@ -10,14 +10,14 @@ import org.webdriver.webui.pageObject.LoginPage;
  */
 @Test(dataProvider = "BaseAction")
 public class loginAction extends BaseAction {
-   @Parameters({"user","password"})
+    @Parameters({"user", "password"})
     public loginAction(@Optional("100") String user, String password) {
         LoginPage loginPage = new LoginPage();
         ElementAction action = new ElementAction();
         loginPage.open();
         action.sendKeys(loginPage.user(), user);
         action.sendKeys(loginPage.password(), password);
-        action.click(loginPage.submit());
-
+        action.sendKeys(loginPage.captcha(), "0000");
+        action.click(loginPage.login());
     }
 }

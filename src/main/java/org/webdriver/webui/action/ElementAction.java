@@ -21,9 +21,9 @@ public class ElementAction extends BaseAction {
 
     public void sendKeys(WebElement element, String key) {
         Actions actions = new Actions(driver);
-        actions.moveToElement(element);
+     //   actions.moveToElement(element);
         sleep(500);
-        element.clear();
+     //   element.clear();
         element.sendKeys(key);
 
     }

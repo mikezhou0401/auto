@@ -6,22 +6,25 @@ import org.webdriver.webui.utils.PropertiesUtil;
 
 
 public class LoginPage extends BaseAction {
-
-    public static final String url = new  PropertiesUtil().getProperties().getProperty("adminLoginURL");
+    public static final String url = new PropertiesUtil().getProperties().getProperty("adminLoginURL");
 
     public void open() {
         driver.get(url);
     }
 
     public WebElement user() {
-        return findElement("id", "su");
+        return findElement("cssSelector", "#root > div > div.body__lCzT4 > div > div > form > div:nth-child(1) > div > div > span > span > input");
     }
 
     public WebElement password() {
-        return findElement("id", "kw");
+        return findElement("cssSelector", "#root > div > div.body__lCzT4 > div > div > form > div:nth-child(2) > div > div > span > span > input");
     }
 
-    public WebElement submit() {
-        return findElement("id", "dd");
+    public WebElement captcha() {
+        return findElement("cssSelector", "#root > div > div.body__lCzT4 > div > div > form > div:nth-child(3) > div > div > span > span > input");
+    }
+
+    public WebElement login() {
+        return findElement("cssSelector", "#root > div > div.body__lCzT4 > div > div > form > div:nth-child(4) > div > div > span > div > button");
     }
 }

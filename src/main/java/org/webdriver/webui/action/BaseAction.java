@@ -27,7 +27,10 @@ public class BaseAction extends TestBaseCase {
         System.setProperty("webdriver.chrome.driver",
                 new PropertiesUtil().getProperties().getProperty("chromeDriverPath"));
         options.addArguments("--start-maximized");
-        options.addArguments("--start-fullscreen");
+
+        //全屏会导致admin页面无法选中
+        //options.addArguments("--start-fullscreen");
+
         if (null == driver) {
             driver = new ChromeDriver(options);
         }
@@ -194,13 +197,6 @@ public class BaseAction extends TestBaseCase {
         ElementAction action = new ElementAction();
         action.click(basePage.roundOption());
         action.click(basePage.sure());
-    }
-
-    /**
-     * 关闭页面下半部分弹窗
-     */
-    public void clickPoint() {
-
     }
 
 
